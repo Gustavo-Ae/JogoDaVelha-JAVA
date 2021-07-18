@@ -13,7 +13,8 @@ public class JogoDaVelha extends JFrame{
     JButton[] botoes = new JButton[9];
     JLabel placar = new JLabel("placar");
     JLabel label_pontos_X = new JLabel("X: 0");
-    JLabel label_pontos_O = new JLabel("O: 0");  
+    JLabel label_pontos_O = new JLabel("O: 0");
+    JButton button_novoJogo = new JButton("Novo Jogo");
     int quantidade_pontos_X = 0;
     int quantidade_pontos_O = 0;
     boolean X_ou_O;
@@ -27,11 +28,27 @@ public class JogoDaVelha extends JFrame{
         setBounds(330, 100, 700, 500);
         
         add(placar);
-        placar.setBounds(400,50,100,30);
         add(label_pontos_X);
         add(label_pontos_O);
+        add(button_novoJogo);
+        
+        placar.setBounds(400,50,100,30);
         label_pontos_X.setBounds(400,75,100,30);
         label_pontos_O.setBounds(450,75,100,30);
+        button_novoJogo.setBounds(400,120,140,30);
+        
+        
+
+        button_novoJogo.addActionListener(new java.awt.event.ActionListener(){
+
+          @Override
+          public void actionPerformed(ActionEvent e){
+              limpar();
+              quantidade_pontos_X = 0;
+              quantidade_pontos_O = 0;
+              atualizarPlacar();
+          }
+        });
   
         int contador = 0;
         
@@ -214,6 +231,7 @@ public class JogoDaVelha extends JFrame{
         for(int i = 0; i < 9;i++){
             botoes[i].setText("");
             click[i] = false;
+            X_ou_O = false; // depois que alguém ganha , na hora que alguém clica vai aparecer o "X"
         }
     }
     
