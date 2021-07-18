@@ -1,14 +1,21 @@
 package jogodavelha;
 
 import java.awt.Font;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
 public class JogoDaVelha extends JFrame{
     JButton[] botoes = new JButton[9];
+    JLabel placar = new JLabel("placar");
+    JLabel label_pontos_X = new JLabel("X: 0");
+    JLabel label_pontos_O = new JLabel("O: 0");  
+    int quantidade_pontos_X = 0;
+    int quantidade_pontos_O = 0;
     boolean X_ou_O;
     boolean[] click = new boolean[9]; // vai ser utilizado para quando clicar em um botão , se ele já estiver ativado com "O" ou "X" ele não vai poder trocar.
     
@@ -19,6 +26,13 @@ public class JogoDaVelha extends JFrame{
         setLayout(null);
         setBounds(330, 100, 700, 500);
         
+        add(placar);
+        placar.setBounds(400,50,100,30);
+        add(label_pontos_X);
+        add(label_pontos_O);
+        label_pontos_X.setBounds(400,75,100,30);
+        label_pontos_O.setBounds(450,75,100,30);
+  
         int contador = 0;
         
         for(int linha = 0; linha < 3;linha++){
@@ -147,6 +161,12 @@ public class JogoDaVelha extends JFrame{
         ganhou();
     }
     
+    public void atualizarPlacar(){
+        label_pontos_X.setText("X : "+quantidade_pontos_X);
+        label_pontos_O.setText("O : "+quantidade_pontos_O); 
+       
+    }
+    
     public void ganhou(){
         
         int posicao_DoClick = 0;  // vai ser usado para verificar o empate 
@@ -167,6 +187,8 @@ public class JogoDaVelha extends JFrame{
                 (botoes[6].getText() == "X" && botoes[4].getText() == "X" && botoes[2].getText() == "X") ){
             
             JOptionPane.showMessageDialog(this, "X ganhou");
+            quantidade_pontos_X++;
+            atualizarPlacar();
             limpar();
         }
         else if((botoes[0].getText() == "O" && botoes[1].getText() == "O" && botoes[2].getText() == "O") ||
@@ -179,12 +201,15 @@ public class JogoDaVelha extends JFrame{
                 (botoes[6].getText() == "O" && botoes[4].getText() == "O" && botoes[2].getText() == "O") ){
             
             JOptionPane.showMessageDialog(this, "O ganhou");
+            quantidade_pontos_O++;
+            atualizarPlacar();
             limpar();
         }else if(posicao_DoClick == 9){
             JOptionPane.showMessageDialog(this, "Empate");
             limpar();
         }
     }
+  
     public void limpar(){
         for(int i = 0; i < 9;i++){
             botoes[i].setText("");
