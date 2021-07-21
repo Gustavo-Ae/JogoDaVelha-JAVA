@@ -1,5 +1,5 @@
 # JogoDaVelha-JAVA
 
 <p>
-  <img src="JogoDaVelha-JAVA/JogoDaVelha/gif/jogoDaVelha.gif">
+  <img src="JogoDaVelha/gif/jogoDaVelha.gif">
 </p>
